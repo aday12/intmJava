@@ -43,22 +43,45 @@ public class Television {
         tuner.setChannel(channel);
     }
 
+    /*
+    @Override
+    public boolean equals(Object o) { //ask for "how to code at x employeer" document to choose which equals is appropriate
+        if (this == o) return true;
+
+        if (o == null || this.getClass() != o.getClass()) return false; //getClass is an exact type match
+        Television that = (Television) o;
+
+        return this.getVolume() == that.getVolume() &&
+                Objects.equals(this.getBrand(), that.getBrand());
+    }
+
+     */
+
     @Override
     public int hashCode() {
-        /*
-         * poorly written hash function, becauses it easily yields hash collisions
-         * hash collision: different objects have the same hash code
-         */
-       // return getBrand().length() + getVolume();
         return Objects.hash(getBrand(), getVolume());
     }
 
+    /*
+    @Override
+    public int hashCode() {
+        // System.out.println("hashCode called");
+
+        // return getBrand().length() + getVolume(); this code generates lots of collisions
+
+        return Objects.hash(getBrand(), getVolume());
+    }
+
+     */
+
     @Override
     public boolean equals(Object obj) {
+        // System.out.println("equals called");
+
         boolean result = false;
 
         //proceed only if obj is really referencing a tv object
-        if (obj instanceof Television) {
+        if (obj != null && this.getClass() == obj.getClass()) { //instanceof is an IS-A match, safe to use == w/class objects and enums
             //safely downcast obj to more specific reference Television
             Television other = (Television) obj;
 
@@ -68,6 +91,7 @@ public class Television {
         }
         return result;
     }
+
 
     //toString
     @Override
