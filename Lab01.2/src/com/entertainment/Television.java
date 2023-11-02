@@ -3,6 +3,13 @@ package com.entertainment;
 import java.util.Comparator;
 import java.util.Objects;
 
+/*
+ * to be "consistent with equals", any fields used in equals() and hashCode()
+ * must be used for natural order
+ *
+ * that means use primary sort key: brand && secondary sort key: volume
+ */
+
 public class Television implements Comparable<Television> {
     //fields
     private String brand;
@@ -75,9 +82,15 @@ public class Television implements Comparable<Television> {
 
      */
 
+    //primary sort key = brand, secondary sort key = volume
     @Override
-   public int compareTo(Television other){
-        return this.getBrand().compareTo(other.getBrand());
+    public int compareTo(Television other) {
+        int result = this.getBrand().compareTo(other.getBrand());
+
+        if (result == 0) { // == 0 means, same brand
+            result = Integer.compare(this.getVolume(), other.getVolume());
+        }
+        return result;
     }
 
     @Override
@@ -87,7 +100,7 @@ public class Television implements Comparable<Television> {
         boolean result = false;
 
         //proceed only if obj is really referencing a tv object
-        if (obj != null && this.getClass() == obj.getClass()) { //instanceof is an IS-A match, safe to use == w/class objects and enums
+        if (obj != null && (this.getClass() == obj.getClass())) { //instanceof is an IS-A match, safe to use == w/class objects and enums
             //safely downcast obj to more specific reference Television
             Television other = (Television) obj;
 

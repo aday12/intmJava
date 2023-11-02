@@ -34,12 +34,8 @@ public class TelevisionTestSort {
 
         System.out.println("Sorted by channel");
         for (Television tv : tvList) {
-          System.out.println(tv);
+            System.out.println(tv);
         }
-        System.out.println();
-
-
-
     }
 
     // dataset for testing
@@ -62,8 +58,8 @@ public class TelevisionTestSort {
         return Arrays.asList(tv1, tv2, tv3, tv4, tv5, tv6);
     }
 
-    private static void dump(List<Television> tvs){
-        for (Television tv : tvs){
+    private static void dump(List<Television> tvs) {
+        for (Television tv : tvs) {
             System.out.println(tv);
         }
     }
