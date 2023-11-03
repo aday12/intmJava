@@ -25,11 +25,11 @@ public class InMemoryCatalogTest {
        }
     }
 
-    @Test(expected = UnsupportedOperationException)
-    public void getInventory_shouldReturnReadOnlyCollection() throws UnsupportedOperationException{
-        //  Collection<Television> tvs = new Catalog.getInventory();
-        // tvs.clear();
-    }
+//    @Test(expected = UnsupportedOperationException)
+//    public void getInventory_shouldReturnReadOnlyCollection() throws UnsupportedOperationException{
+//        Collection<Television> tvs = new Catalog.getInventory();
+//        tvs.clear();
+//    }
 
     @Test
     public void numberInGenre_shouldReturnCorrectResult() {
