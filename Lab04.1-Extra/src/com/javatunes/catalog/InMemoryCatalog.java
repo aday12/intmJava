@@ -8,6 +8,7 @@
 
 package com.javatunes.catalog;
 
+import java.sql.Date;
 import java.util.*;
 
 // OF COURSE THIS CLASS DOESN'T COMPILE
@@ -35,7 +36,6 @@ public class InMemoryCatalog implements Catalog {
             new MusicItem(17L, "1984", "Van Halen", "1984-08-19", 11.97, MusicCategory.ROCK),
             new MusicItem(18L, "Escape", "Journey", "1981-02-25", 11.97, MusicCategory.CLASSIC_ROCK))
     );
-
 
     /**
      * After you've satisfied your contractual obligations above, do these additional tasks.
@@ -153,9 +153,16 @@ public class InMemoryCatalog implements Catalog {
      * TASK: are all items priced at least $10?
      * This is a yes/no answer.
      */
-//    public boolean isCheap(){
-//        return false;
-//    }
+    public boolean isCheap(Long id){
+        boolean result = false;
+
+        for (MusicItem item : catalogData){
+            if (item.getPrice() < 10.0){
+                result = true;
+            }
+        }
+        return result;
+    }
 
     /**
      * TASK: do we sell any items with the specified genre (MusicCategory)?
@@ -172,6 +179,9 @@ public class InMemoryCatalog implements Catalog {
     /**
      * TASK: find all items released in the 80s whose price is less than or equal to the specified price.
      */
+    public int numberInGenre(MusicCategory category) {
+        return findByCategory(category).size();
+    }
 
 
     /**
@@ -222,7 +232,7 @@ public class InMemoryCatalog implements Catalog {
         return catalogData.size();
     }
 
-    public Collection<MusicItem> getAll() {
+    public Collection<MusicItem> getInventory() {
         return Collections.unmodifiableCollection(catalogData);
     }
 

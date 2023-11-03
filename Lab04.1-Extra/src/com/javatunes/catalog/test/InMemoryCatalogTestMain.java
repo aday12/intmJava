@@ -14,7 +14,7 @@ import com.javatunes.catalog.MusicItem;
 
 import java.util.Collection;
 
-class InMemoryCatalogTest {
+class InMemoryCatalogTestMain {
 
     /*
      * One by one, complete each test method below, and then "activate" it by
@@ -74,8 +74,8 @@ class InMemoryCatalogTest {
     private static void testGetAll() {
         InMemoryCatalog catalog = new InMemoryCatalog();
 
-        Collection<MusicItem> allItems = catalog.getAll();
-        dump(catalog.getAll());
+        Collection<MusicItem> allItems = catalog.getInventory();
+        dump(catalog.getInventory());
     }
 
     private static void testFindSelfTitled(){

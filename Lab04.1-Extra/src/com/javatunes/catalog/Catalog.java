@@ -42,5 +42,5 @@ public interface Catalog {
      * Read-only view of the entire catalog.
      * See java.util.Collections class (an all-static utility class) for help here.
      */
-    public Collection<MusicItem> getAll();
+    public Collection<MusicItem> getInventory();
 }
