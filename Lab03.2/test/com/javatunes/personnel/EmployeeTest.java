@@ -13,8 +13,29 @@ public class EmployeeTest {
 
     @Before
     public void setUp() {
-        emp = new SalariedEmployee("Mary", Date.valueOf("2020-06-01"));
-        emp2 = new SalariedEmployee("Mary", Date.valueOf("2020-06-01"));
+        // emp = new DummyEmployee("Mary", Date.valueOf("2020-06-01"));
+        // emp2 = new DummyEmployee("Mary", Date.valueOf("2020-06-01"));
+
+        emp = new Employee("Mary", Date.valueOf("2020-06-01")) {
+            public double pay() {
+                return 0;
+            }
+            public double payTaxes() {
+                return 0;
+            }
+        };
+
+        emp2 = new Employee("Mary", Date.valueOf("2020-06-01")) {
+            @Override
+            public double pay() {
+                return 0;
+            }
+
+            @Override
+            public double payTaxes() {
+                return 0;
+            }
+        };
     }
 
     // ask at work if we need to do repetitive testing on abstract classes/interfaces
@@ -33,5 +54,23 @@ public class EmployeeTest {
     @Test
     public void equals_shouldReturnTrue_allPropertiesSame() {
         assertEquals(emp, emp2);
+    }
+
+    //named member level inner classes
+    private class DummyEmployee extends Employee{
+
+        public DummyEmployee(String name, Date hireDate) {
+            super(name, hireDate);
+        }
+
+        @Override
+        public double pay() {
+            return 0;
+        }
+
+        @Override
+        public double payTaxes() {
+            return 0;
+        }
     }
 }
