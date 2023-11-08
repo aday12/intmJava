@@ -1,6 +1,7 @@
 package com.duckrace;
 
 import java.io.IOException;
+import java.net.IDN;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -38,10 +39,13 @@ import java.util.*;
  *   17       17    Dom        1    DEBIT_CARD
  */
 
-class Board {
+public class Board {
     private final Map<Integer, String> studentIdMap = loadStudentIDMap();
     private final Map<Integer, DuckRacer> racerMap = new TreeMap<>();
 
+//    public static int classSize(){
+//        return studentIdMap.size();
+//    }
     /*
      * updates board (racerMap) by making a DuckRacer win()
      * could fetch existing DuckRacer from racerMap
@@ -71,12 +75,18 @@ class Board {
      *  3   Bullen  1       DEBIT_CARD
      *  3   CJ      2       DEBIT_CARD, DEBIT_CARD
      */
-    void show(){
+    public void show(){
         Collection<DuckRacer> racers = racerMap.values();
 
-        for (DuckRacer racer : racers){
-            System.out.printf("%s   %s  %s  %s\n",
-                    racer.getId(), racer.getName(), racer.getWins(), racer.getRewards());
+        if (racerMap.isEmpty()){
+            System.out.println("\nThere are no winners yet\n");
+        }
+        else {
+            for (DuckRacer racer : racers) {
+                System.out.println("ID   NAME     WINS     REWARDS");
+                System.out.printf("%s   %s  %s  %s\n",
+                        racer.getId(), racer.getName(), racer.getWins(), racer.getRewards());
+            }
         }
     }
 
