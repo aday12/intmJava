@@ -20,10 +20,10 @@ public interface Catalog {
     /**
      * Returns a collection of items that match the supplied keyword.
      * This is basically a search method.
-     *
+     * <p>
      * A match is defined as any item whose title or artist contains the keyword.
      * Searches are to be case insensitive.
-     *
+     * <p>
      * A no-matches result should return an empty collection (not null).
      */
     public Collection<MusicItem> findByKeyword(String keyword);

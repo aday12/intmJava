@@ -17,7 +17,7 @@ import java.sql.Date;
  * - Comparable is based on id, also -> natural order defined by increasing id.
  */
 public class MusicItem
-implements Comparable<MusicItem> {
+        implements Comparable<MusicItem> {
     private Long id;
     private String title;
     private String artist;

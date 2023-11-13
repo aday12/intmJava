@@ -119,12 +119,12 @@ public class InMemoryCatalog implements Catalog {
     /**
      * TASK: find the cheapest item with the specified genre (MusicCategory).
      */
-    public MusicItem findCheapest(MusicCategory genre){
+    public MusicItem findCheapest(MusicCategory genre) {
         MusicItem cheapItem = null;
 
-        for (MusicItem item : catalogData){
-            if (item.getMusicCategory().equals(genre)){
-                if (cheapItem == null || item.getPrice() < cheapItem.getPrice()){
+        for (MusicItem item : catalogData) {
+            if (item.getMusicCategory().equals(genre)) {
+                if (cheapItem == null || item.getPrice() < cheapItem.getPrice()) {
                     cheapItem = item;
                 }
             }
@@ -135,19 +135,19 @@ public class InMemoryCatalog implements Catalog {
     /**
      * TASK: find the average price of items in the specified genre (MusicCategory).
      */
-        public boolean hasGenre(MusicCategory category){
-            //return findByCategory(category).size() > 0;
-            // not as good because it checks more than the minimum needed to answer
+    public boolean hasGenre(MusicCategory category) {
+        //return findByCategory(category).size() > 0;
+        // not as good because it checks more than the minimum needed to answer
 
-            boolean result = false;
+        boolean result = false;
 
-            for (MusicItem item : catalogData){
-                if(item.getMusicCategory().equals(category)){
-                    result = true;
-                }
+        for (MusicItem item : catalogData) {
+            if (item.getMusicCategory().equals(category)) {
+                result = true;
             }
-            return result;
         }
+        return result;
+    }
 
     /**
      * TASK: are all items priced at least $10?
@@ -179,7 +179,7 @@ public class InMemoryCatalog implements Catalog {
      * is a collection of items in that genre.  If there is a genre that we don't currently
      * sell, that key's associated value should be an empty collection, not null.
      */
-    public Map<MusicCategory,Collection<MusicItem>> result = new HashMap<>();
+    public Map<MusicCategory, Collection<MusicItem>> result = new HashMap<>();
 
     // TODO: for each category call another method in this class that returns a Collection<MusicItem> for that category
     // then put() that category and its collection in the result map

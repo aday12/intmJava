@@ -78,34 +78,34 @@ class InMemoryCatalogTest {
         dump(catalog.getAll());
     }
 
-    private static void testFindSelfTitled(){
+    private static void testFindSelfTitled() {
         InMemoryCatalog catalog = new InMemoryCatalog();
 
         Collection<MusicItem> selfTitled = catalog.findSelfTitled();
         System.out.println(catalog.findSelfTitled());
     }
 
-    private static void testFindCheapRock(){
+    private static void testFindCheapRock() {
         InMemoryCatalog catalog = new InMemoryCatalog();
 
         Collection<MusicItem> cheapRock = catalog.findCheapRock(30);
         System.out.println(cheapRock);
     }
 
-    private static void findNumberSold(){
+    private static void findNumberSold() {
         InMemoryCatalog catalog = new InMemoryCatalog();
 
         Integer total = catalog.numberSold(MusicCategory.ROCK);
         System.out.println(total);
     }
 
-    private static void findAvgPrice(){
+    private static void findAvgPrice() {
         InMemoryCatalog catalog = new InMemoryCatalog();
 
         System.out.println(catalog.findAvgPrice());
     }
 
-    private static void findCheapest(){
+    private static void findCheapest() {
         InMemoryCatalog catalog = new InMemoryCatalog();
 
         System.out.println(catalog.findCheapest(MusicCategory.ROCK));
@@ -113,7 +113,7 @@ class InMemoryCatalogTest {
 
     //helper method to show collection vertically
     private static void dump(Collection<MusicItem> items) {
-        for (MusicItem item : items){
+        for (MusicItem item : items) {
             System.out.println(item);
         }
     }
