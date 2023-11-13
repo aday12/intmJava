@@ -1,6 +1,6 @@
 package com.duckrace;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.IDN;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -39,13 +39,39 @@ import java.util.*;
  *   17       17    Dom        1    DEBIT_CARD
  */
 
-public class Board {
+public class Board implements Serializable {
+    private static final String dataFilePath = "data/board.dat";
+
+    /*
+     * if data/board.dat exits read that into a board obj and return
+     * else return a new board()
+     */
+
+    public static Board getInstance() {
+        Board board = null;
+
+        if (Files.exists(Path.of(dataFilePath))) {
+            try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(dataFilePath))){
+                board = (Board) in.readObject();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        else {
+            board = new Board();
+        }
+        return board;
+    }
+
     private final Map<Integer, String> studentIdMap = loadStudentIDMap();
     private final Map<Integer, DuckRacer> racerMap = new TreeMap<>();
 
-//    public static int classSize(){
-//        return studentIdMap.size();
-//    }
+    //prevent outside instantiation, it's only done in the getInstance() method
+    private Board(){
+
+    }
+
     /*
      * updates board (racerMap) by making a DuckRacer win()
      * could fetch existing DuckRacer from racerMap
@@ -60,6 +86,19 @@ public class Board {
             racerMap.put(id, racer);
         }
         racer.win(reward);
+        save();
+    }
+
+    /*
+     * write this board obj to binary file to data/board.dat
+     * uses built in Java obj serialization facility
+     */
+    private void save() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dataFilePath))) {
+            out.writeObject(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /*
@@ -75,6 +114,7 @@ public class Board {
      *  3   Bullen  1       DEBIT_CARD
      *  3   CJ      2       DEBIT_CARD, DEBIT_CARD
      */
+
     public void show(){
         Collection<DuckRacer> racers = racerMap.values();
 

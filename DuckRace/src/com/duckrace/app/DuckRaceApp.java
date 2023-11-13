@@ -7,7 +7,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class DuckRaceApp {
-    private final Board board = new Board();
+    private final Board board = Board.getInstance();
     private final Scanner scanner = new Scanner(System.in);
 
     public void run(){
@@ -28,7 +28,7 @@ public class DuckRaceApp {
 
         boolean validInput = false;
         while (!validInput){
-            System.out.println("Pleae [D]ebit card or [P]rizes: ");
+            System.out.println("Please [D]ebit card or [P]rizes: ");
             String input = scanner.nextLine().trim().toUpperCase();
             if (input.matches("D|P")){
                 validInput = true;
@@ -61,7 +61,6 @@ public class DuckRaceApp {
     }
 
     private void welcome() {
-        System.out.println();
         System.out.println("------------------------------------------");
         System.out.println("HOWDY PARTNER, WELCOME TO THE DUCKRACE APP");
         System.out.println("------------------------------------------");
