@@ -10,6 +10,7 @@ package com.javatunes.catalog;
 
 import java.sql.Date;
 import java.util.*;
+import java.util.stream.Collectors;
 
 // OF COURSE THIS CLASS DOESN'T COMPILE
 // Your first job is to fulfill the contract that this class has signed.
@@ -63,15 +64,21 @@ public class InMemoryCatalog implements Catalog {
      * TASK: find all MusicItems where title is same as artist.
      * For example, Madonna's first album is simply titled, "Madonna."
      */
-    public Collection<MusicItem> findSelfTitled() {
-        Collection<MusicItem> result = new ArrayList<>();
+//    public Collection<MusicItem> findSelfTitled() {
+//        Collection<MusicItem> result = new ArrayList<>();
+//
+//        for (MusicItem item : catalogData) {
+//            if (item.getTitle().equals(item.getArtist())) {
+//                result.add(item);
+//            }
+//        }
+//        return result;
+//    }
 
-        for (MusicItem item : catalogData) {
-            if (item.getTitle().equals(item.getArtist())) {
-                result.add(item);
-            }
-        }
-        return result;
+    public Collection<MusicItem> findSelfTitled(){
+        return catalogData.stream().
+                filter(item -> item.getTitle().equals(item.getArtist()))
+                .collect(Collectors.toList());
     }
 
 
@@ -108,12 +115,8 @@ public class InMemoryCatalog implements Catalog {
      * TASK: determine average price of our low-cost, extensive catalog of music.
      */
     public double findAvgPrice() {
-        double totalPrice = 0.0;
-
-        for (MusicItem item : catalogData) {
-            totalPrice += item.getPrice();
-        }
-        return totalPrice / catalogData.size();
+        return catalogData.stream()
+                .collect(Collectors.averagingDouble(MusicItem::getPrice));
     }
 
     /**
