@@ -7,7 +7,6 @@
  */
 package com.javatunes.thread;
 
-// TODO: extend the Thread class
 public class MessagePrinter extends Thread {
     private final String message;
     private int count;
